@@ -15,7 +15,8 @@ repos:
     -   id: spell-check
         exclude: >
           (?x)^(
-          data/.*| 
+          data/.*|
+          inst/bin/.*|
           (.*/|)\.Rprofile|
           (.*/|)\.Renviron|
           (.*/|)\.gitignore|

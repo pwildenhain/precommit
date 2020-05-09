@@ -8,6 +8,8 @@ Description: Useful git hooks for R building on top of the
 License: GPL-3
 URL: https://lorenzwalthert.github.io/precommit/,
     https://github.com/lorenzwalthert/precommit
+Depends: 
+    R (>= 3.2)
 Imports:
     docopt,
     fs,

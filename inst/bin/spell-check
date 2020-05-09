@@ -34,7 +34,7 @@ spelling_errors <- spelling::spell_check_files(
 if (nrow(spelling_errors) > 0) {
   cat("The following spelling errors were found:\n" )
   print(spelling_errors)
-  ignore <- sort(unique(c(ignore, spelling_errors$word)))
+  ignore <- sort(unique(trimws(c(ignore, spelling_errors$word))))
   ignore <- ignore[ignore != ""] # drop blanks if any
   writeLines(ignore, path_wordlist)
   cat(
