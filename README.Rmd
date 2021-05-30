@@ -141,6 +141,15 @@ manually after hitting *abort* in the RStudio git tab, you can `git apply
 /path/to/patch_with_id` whereas you find the patch under your pre-commit cache,
 which is usually under `$HOME/.cache/pre-commit/`.
 
+```{r}
+# > Error in loadNamespace(name) : there is no package called ‘__name_of_package__’
+```
+  In that case, just install the package with `install.packages()` once and 
+  try to commit again.
+  All R dependencies of the pre-commit hooks provided in this repo are suggested
+  dependencies of this R package, so if you want to install them all, just 
+  `install.packages("precommit", dependencies = c("Imports", "Suggests"))`.
+
 ## Update
 
 If you used {precommit} before, upgrade these three components for maximal
@@ -161,6 +170,7 @@ compatibility:
   rid of all but one. You can check the version of you executable with
   `precommit::version_precommit()`. Updates to the pre-commit framework are not
   released in sync with the R or hook revision updates.
+
 
 ## Uninstallation
 

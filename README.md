@@ -121,17 +121,34 @@ To update the hook revisions, run `precommit::autoupdate()`.
 
 ## Caution
 
-**Do not abort while hooks are running in RStudio git tab.** Non-staged
-changes are stashed to a temp directory and when you abort in RStudio,
-these changes are not brought back to you repo. Upvote [this
-issue](https://github.com/rstudio/rstudio/issues/6471) to change this.
-We hope that in the future, the changes will be recovered in RStudio
-too. Note that this is only an issue with RStudio. Stashes are restored
-when you abort a `git commit` with `INT` (e.g. Ctrl+C) on the command
-line. To restore stashes, manually after hitting *abort* in the RStudio
-git tab, you can `git apply /path/to/patch_with_id` whereas you find the
-patch under your pre-commit cache, which is usually under
-`$HOME/.cache/pre-commit/`.
+-   **Do not abort while hooks are running in RStudio git tab.**
+    Non-staged changes are stashed to a temp directory and when you
+    abort in RStudio, these changes are not brought back to you repo.
+    Upvote [this issue](https://github.com/rstudio/rstudio/issues/6471)
+    to change this. We hope that in the future, the changes will be
+    recovered in RStudio too. Note that this is only an issue with
+    RStudio. Stashes are restored when you abort a `git   commit` with
+    `INT` (e.g. Ctrl+C) on the command line. To restore stashes,
+    manually after hitting *abort* in the RStudio git tab, you can
+    `git   apply /path/to/patch_with_id` whereas you find the patch
+    under your pre-commit cache, which is usually under
+    `$HOME/.cache/pre-commit/`.
+
+-   Because R is not officially supported as a language in the
+    pre-commit framework (yet), there is no R package dependency
+    management for the R hooks provided in this repo. If an R package
+    that is needed by a hook is not yet installed, you might get this
+    error:
+
+``` r
+# > Error in loadNamespace(name) : there is no package called ‘__name_of_package__’
+```
+
+In that case, just install the package with `install.packages()` once
+and try to commit again. All R dependencies of the pre-commit hooks
+provided in this repo are suggested dependencies of this R package, so
+if you want to install them all, just
+`install.packages("precommit", dependencies = c("Imports", "Suggests"))`.
 
 ## Update
 
